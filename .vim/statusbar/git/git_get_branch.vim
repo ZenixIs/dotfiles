@@ -3,14 +3,29 @@
 " empty string if there is no
 " .git directory available
 "
+
 function! GetGitBranch()
-    try
-        let l:file = readfile(getcwd() . "/.git/HEAD", '')
-        for l:line in l:file
-            let l:branch = l:line
-        endfor
-        return split(l:branch, '/')[2]
-    catch /E484/
-        return ''
-    endtry
+    let cwd = getcwd()
+    let file = "/.git/HEAD"
+    let branch = ''
+
+    " Trying to get the current
+    " branch if there's a repo
+    if filereadable(cwd . file)
+        let branch = ReturnBranchFromFile(cwd, file)
+    elseif filereadable(expand("%:h") . file)
+        let branch = ReturnBranchFromFile(expand("%:h"), file)
+    endif
+
+    return branch
+endfunction
+
+function! ReturnBranchFromFile(path, file)
+    let read = readfile(a:path . a:file)
+
+    for line in read
+       let str = line
+    endfor
+
+    return split(str, '/')[2]
 endfunction

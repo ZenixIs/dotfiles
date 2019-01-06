@@ -1,20 +1,17 @@
 " Vim Plugins
-" -----------
 "
-" You need to install these
-" plugings.
-"
-"call plug#begin('~/.vim/plugged')
-"Plug 'dracula/vim'
-"Plug 'nightsense/stellarized'
-"Plug 'vim-scripts/TagHighlight'
-"Plug 'Valloric/YouCompleteMe'
-"call plug#end()
+call plug#begin('~/.vim/plugged')
+Plug 'dracula/vim'
+Plug 'nightsense/stellarized'
+Plug 'vim-scripts/TagHighlight'
+Plug 'Valloric/YouCompleteMe'
+call plug#end()
 
 " Basic rules
 "
 filetype plugin on
 syntax enable
+set encoding=utf-8
 set number
 set smartindent
 set autoindent
@@ -25,7 +22,7 @@ set backspace=indent,eol,start
 
 " Autocompletion compilation config file
 "
-"let g:ycm_global_ycm_extra_conf = "/home/$USER/.ycm_extra_conf.py"
+let g:ycm_global_ycm_extra_conf = "/home/$USER/.ycm_extra_conf.py"
 
 " Ignore .swp files
 "
@@ -52,25 +49,31 @@ set cursorline
 "
 " Loading git branch function
 source /home/$USER/.vim/statusbar/git/git_get_branch.vim
+let branch = GetGitBranch()
 
 set laststatus=2
 " Prompt
 set statusline=
 set statusline+=%1*
-set statusline+=>\ %t
+set statusline+=❱\ %t
 set statusline+=
-if GetGitBranch() != ''
-     set statusline+=\ on\%2*\ %{GetGitBranch()}\%1*
+if branch != ''
+    if branch != 'master'
+        set statusline +=\ on%3*\ %{branch}\%1*\ ⎇
+    else
+        set statusline +=\ on\%2*\ %{branch}\%1*\ ⎇
+    endif
 endif
-set statusline+=%=
-set statusline+=%p%%
-set statusline+=\  
-set statusline+=(%{strftime('%R')})\%*
+set statusline +=%=
+set statusline +=%y
+set statusline +=\ %p%%
+set statusline +=\  
+set statusline +=(%{strftime('%R')})\%*
 
 " Setting colors
 "
 set background=dark
-"colorscheme dracula
+colorscheme dracula
 
 " Text mapping
 inoremap ( ()<left>

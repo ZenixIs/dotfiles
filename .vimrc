@@ -1,3 +1,8 @@
+" *****************
+" My vimrc config
+" ---------------
+"
+"
 " Vim Plugins
 "
 call plug#begin('~/.vim/plugged')
@@ -38,6 +43,7 @@ set expandtab
 " Auto Epitech headers
 "
 autocmd bufnewfile *.h,*.c so /home/$USER/.vim/epitech-headers/c_header.txt
+autocmd bufnewfile main.c so /home/$USER/.vim/epitech-headers/main_header.txt
 autocmd bufnewfile Makefile so /home/$USER/.vim/epitech-headers/make_header.txt
 
 " highlight current line

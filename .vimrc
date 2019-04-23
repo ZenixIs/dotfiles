@@ -27,7 +27,7 @@ set backspace=indent,eol,start
 
 " Autocompletion compilation config file
 "
-let g:ycm_global_ycm_extra_conf = "/home/$USER/.ycm_extra_conf.py"
+let g:ycm_global_ycm_extra_conf = "/home/$USER/.vim/.ycm_extra_conf.py"
 
 " Ignore .swp files
 "

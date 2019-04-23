@@ -1,6 +1,19 @@
 [submodule "zsh-git-prompt"]
 	path = zsh-git-prompt
     url = https://github.com/olivierverdier/zsh-git-prompt
-[submodule "TagHighlight"]
-    path = TagHighlight
-    url = https://github.com/vim-scripts/TagHighlight
+
+[submodule ".vim/plugged/TagHighlight"]
+	path = .vim/plugged/TagHighlight
+	url = https://github.com/vim-scripts/TagHighlight
+
+[submodule ".vim/plugged/stellarized"]
+	path = .vim/plugged/stellarized
+	url = https://github.com/nightsense/stellarized
+
+[submodule ".vim/plugged/YouCompleteMe"]
+	path = .vim/plugged/YouCompleteMe
+	url = https://github.com/Valloric/YouCompleteMe
+
+[submodule ".vim/plugged/vim"]
+	path = .vim/plugged/vim
+	url = https://github.com/dracula/vim

@@ -85,5 +85,5 @@ function git
 
 # Git ssh
 #
-eval $(ssh-agent) > /dev/null
-ssh-add ~/.ssh/github_key 2> /dev/null
+#eval $(ssh-agent) > /dev/null
+#ssh-add ~/.ssh/github_key 2> /dev/null

@@ -10,15 +10,15 @@ INC		=	-I./include/
 
 CC		=	gcc $(INC)
 
-SRCDIR	=	src
+SRCDIR		=	src
 
-SRC		=   $(SRCDIR)/main.c
+SRC		=   	$(SRCDIR)/main.c
 
 OBJ		=	$(SRC:.c=.o)
 
 BIN		=	bin
 
-CFLAGS	=	-W -Wall -Wextra
+CFLAGS		=	-W -Wall -Wextra
 
 all: $(OBJ)
 	$(CC) $(CFLAGS) -o $(BIN) $(OBJ) $(LIB)

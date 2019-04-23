@@ -24,7 +24,7 @@ setopt NOBGNICE
 #setopt HUP
 
 ## history
-HISTFILE=.zhistory
+HISTFILE=/$HOME/.zhistory
 HISTSIZE=10000
 SAVEHIST=1000
 setopt APPEND_HISTORY
@@ -38,18 +38,18 @@ setopt NO_BEEP
 ## CD with only the name
 setopt AUTO_CD
 
-## automatically decide when to page a list of completions
-#LISTMAX=0
-
-## disable mail checking
-#MAILCHECK=0
-
 ## Loading completion rules
+# http://www.masterzen.fr/2009/04/19/in-love-with-zsh-part-one/
 autoload -Uz compinit
 compinit
 
 autoload -U bashcompinit
 bashcompinit
+
+zstyle ':completion:*' menu select
+zstyle ':completion:*:warnings' format 'Can not find completion rules.'
+zstyle ':completion:::::' completer _complete _approximate
+zstyle ':completion:*' group-name ''
 
 ## Loading colors, for the prompt.
 autoload -U colors
@@ -59,9 +59,11 @@ PROMPT='%B(%{$fg[red]%}%T%{$reset_color%}%B) - (%{$fg[cyan]%}%m%{$reset_color%}%
 
 ## Configuring aliases
 alias ls='ls --color=always'
+alias df="df -h"
 alias la='ls --color=always -la'
 alias grep='grep --color=auto'
 alias emacs="emacs -nw"
+alias blih="blih -u alexandre.bedel@epitech.eu"
 alias yay="yay --color=always"
 alias valeak="valgrind --leak-check=full"
 
@@ -84,4 +86,4 @@ function git
 # Git ssh
 #
 eval $(ssh-agent) > /dev/null
-ssh-add ~/.ssh/rsa_github 2> /dev/null
+ssh-add ~/.ssh/github_key 2> /dev/null

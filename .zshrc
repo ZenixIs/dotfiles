@@ -12,6 +12,18 @@ source "/home/$USER/.zsh/zsh-git-prompt/zshrc.sh"
 #
 stty -ixon
 
+case $(tty) in
+  (/dev/tty[1-9]) setfont /usr/share/kbd/consolefonts/ter-118b.psf.gz
+esac
+
+bindkey -e
+
+autoload -U history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+bindkey "^[[A" history-beginning-search-backward-end
+bindkey "^[[B" history-beginning-search-forward-end
+
 ## Display red dot while completion in running
 COMPLETION_WAITING_DOTS="true"
 
@@ -65,25 +77,34 @@ alias grep='grep --color=auto'
 alias emacs="emacs -nw"
 alias blih="blih -u alexandre.bedel@epitech.eu"
 alias yay="yay --color=always"
-alias valeak="valgrind --leak-check=full"
+alias valeak="colour-valgrind --leak-check=full"
+alias diff="diff --color -u"
+alias valgrind="colour-valgrind"
+alias l="ls --color=auto"
+alias ll="ls -l --color=auto"
 
 ## Auto cd after git clone
 # https://unix.stackexchange.com/questions/97920/how-to-cd-automatically-after-git-clone
-function git
-{
-	local tmp=$(mktemp)
-	local repo_name
-	if [ "$1" = "clone" ]; then
-		/usr/bin/git "$@" --progress 2>&1 | tee $tmp
-		repo_name=$(awk -F\' '/Cloning into/ {print $2}' $tmp)
-		rm $tmp
-		cd $repo_name
-	else
-		/usr/bin/git "$@"
-	fi
-}
+#function git
+#{
+#	local tmp=$(mktemp)
+#	local repo_name
+#	if [ "$1" = "clone" ]; then
+#		/usr/bin/git "$@" --progress 2>&1 | tee $tmp
+#		repo_name=$(awk -F\' '/Cloning into/ {print $2}' $tmp)
+#		rm $tmp
+#		cd $repo_name
+#	else
+#		/usr/bin/git "$@"
+#	fi
+#}
 
 # Git ssh
 #
-#eval $(ssh-agent) > /dev/null
-#ssh-add ~/.ssh/github_key 2> /dev/null
+eval $(ssh-agent) > /dev/null
+ssh-add ~/.ssh/github_key 2> /dev/null
+
+# Flutter config path
+export PATH=$PATH:"/home/helix/Desktop/flutter/bin"
+
+export LD_LIBRARY_PATH="./myteams"
